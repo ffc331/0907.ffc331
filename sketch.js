@@ -101,14 +101,14 @@ function draw() {
         plane(_w, _h);
         pop();
     }else if(open == 1){
-        push();
-        // texture(cover);
-        texture(pageI);
-        // translate(0,0,boxSize);
-        let _f = pageI.height/cover.height;
-        translate(0,_h*_f*-0.25,boxSize);
-        plane(_w, _f*1000);
-        pop();
+        // push();
+        // // texture(cover);
+        // texture(pageI);
+        // // translate(0,0,boxSize);
+        // let _f = pageI.height/cover.height;
+        // translate(0,_h*_f*-0.25,boxSize);
+        // plane(_w, _f*1000);
+        // pop();
     }else if(open == 2){
         push();
         // texture(cover);
@@ -120,12 +120,38 @@ function draw() {
         pop();
     }
 
-    push();
-    translate(0,0,-1*boxSize);
-    rotateY(radians(180));
-    texture(backcover);
-    plane(_w, _h);
-    pop();
+    // push();
+    // translate(0,0,-1*boxSize);
+    // rotateY(radians(180));
+    // texture(backcover);
+    // plane(_w, _h);
+    // pop();
+
+    if(open == 0){
+      push();
+      translate(0,0,-1*boxSize);
+      rotateY(radians(180));
+      texture(backcover);
+      plane(_w, _h);
+      pop();
+    }else{
+      // push();
+      // translate(0,0,-1*boxSize);
+      // rotateY(radians(180));
+      // texture(pageI);
+      // plane(_w, _h);
+      // pop();
+
+      push();
+      // texture(cover);
+      texture(pageI);
+      // translate(0,0,boxSize);
+      let _f = pageII.height/cover.height;
+      translate(0,_h*_f*-0.21,-1*boxSize);
+      rotateY(radians(180));
+      plane(_w, _h*_f);
+      pop();
+    }
 
     if(frameCount%90==0){
         print(str[strCount%str.length]);
@@ -164,12 +190,12 @@ function clickTrip(){
         reset =true;
     // open =1;
         easycam.setState(state, 2000);
-        easycam.removeMouseListeners();
+        // easycam.removeMouseListeners();
     }else if(open==1){
         open = 2;
     }else if(open==2){
         open = 0;
-        easycam.attachMouseListeners();
+        // easycam.attachMouseListeners();
         let _s = JSON.parse(JSON.stringify(state));
         // print(_s);
         _s.distance = 2700;
